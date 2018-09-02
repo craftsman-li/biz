@@ -7,6 +7,15 @@ type DbConfig struct {
 	Prefix  string `yaml:"prefix"`
 }
 
+func (db *DbConfig) InitParam(defaultPrefix string) {
+	if "" == db.Prefix {
+		db.Prefix = defaultPrefix
+	}
+	if "" == db.Dialect {
+		db.Dialect = "mysql"
+	}
+}
+
 // session biz config
 type SessionConfig struct {
 }
@@ -17,7 +26,4 @@ type LogInfo struct {
 
 // web biz config
 type WebConfig struct {
-	// 是否校验允不允许登录
-	// 如果为true, 则在账号密码验证通过后，检验是否有此路径登录的权限
-	LoginCheckEnable bool
 }
